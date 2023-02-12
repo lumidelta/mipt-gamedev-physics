@@ -1,6 +1,6 @@
 import sympy as sp
 
-y0 = [10, 9, 8]
+y0 = [10]
 m = 0.1
 g = 9.8
 k = 5.0
@@ -15,11 +15,8 @@ dl2 = y1(t) - y2(t) - l
 
 eq = [sp.Eq( k * (dl1 - dl2) - m * g, m * y1(t).diff(t, t)), sp.Eq( k * dl2 - m * g, m * y2(t).diff(t, t))]
 sol = sp.dsolve(eq, ics={y1(0): 9, y2(0):7, sp.diff(y1(t), t).subs(t,0): 0, sp.diff(y2(t), t).subs(t,0): 0})
-sol_0t = sol[0].subs({k: 5.0, m:0.1, l:1.0, g:10.0}).rhs
-sol_1t = sol[1].subs({k: 5.0, m:0.1, l:1.0, g:10.0}).rhs
-a = 1
-# sp.plot(sol_0t, (t, 0, 50))
-# sp.plot(sol_1t, (t, 0, 50))
+sol_0t = sol[0].rhs
+sol_1t = sol[1].rhs
 
 import math
 def addLines(xxdata, xydata):
